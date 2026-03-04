@@ -1,0 +1,64 @@
+#score {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+#game {
+  width: 600px;
+  height: 300px;
+  border: 2px solid black;
+  margin: auto;
+  position: relative;
+  background-image: url("img/hintergrund.jpg"); /* Verkehrshaus */
+  background-size: cover;
+  background-position: center;
+}
+
+#ship {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  top: 210px;
+  background-image: url("img/schiff.png"); /* Schiff-Icon */
+  background-size: cover;
+}
+
+#obstacle {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 250px;
+  left: 550px;
+  background-image: url("img/fels.png");
+  background-size: cover;
+  animation: obstacleMove 1.33s infinite linear;
+}
+
+@keyframes obstacleMove {
+  0% {
+    left: 550px;
+  }
+  100% {
+    left: -50px;
+  }
+}
+
+/* Sprunganimation */
+.jump-animation {
+  animation: jump 0.8s;
+}
+
+@keyframes jump {
+  0% {
+    top: 210px;
+  }
+  50% {
+    top: 50px;
+  }
+  75% {
+    top: 50px;
+  }
+  100% {
+    top: 210px;
+  }
+}
