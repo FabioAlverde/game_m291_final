@@ -9,74 +9,29 @@
   border: 2px solid black;
   margin: auto;
   position: relative;
+  overflow: hidden;
   background-image: url("img/hintergrund.jpg");
   background-size: cover;
   background-position: center;
 }
 
-/* Spieler */
 #ship {
   width: 80px;
   height: 80px;
-  position: relative;
-  top: 210px;
+  position: absolute;
+  bottom: 10px;
+  left: 50px;
   background-image: url("img/schiff.png");
   background-size: cover;
+  transform-origin: center;
 }
 
-/* Hindernis */
 #obstacle {
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 250px;
-  left: 550px;
+  bottom: 10px;
+  left: 600px;
   background-image: url("img/fels.png");
   background-size: cover;
-  animation: obstacleMove 1.33s infinite linear;
-}
-
-/* Hindernis Bewegung */
-@keyframes obstacleMove {
-  0% {
-    left: 550px;
-  }
-  100% {
-    left: -50px;
-  }
-}
-
-/* Sprung Animation mit 360° Drehung */
-.jump-animation {
-  animation: jump 0.8s;
-}
-
-@keyframes jump {
-  0% {
-    top: 210px;
-    transform: rotate(0deg);
-  }
-  50% {
-    top: 50px;
-    transform: rotate(180deg);
-  }
-  100% {
-    top: 210px;
-    transform: rotate(360deg);
-  }
-}
-
-/* Game Over Fall */
-.fall-animation {
-  animation: fall 1s forwards;
-}
-
-@keyframes fall {
-  0% {
-    top: 210px;
-  }
-  100% {
-    top: 400px;
-    opacity: 0;
-  }
 }

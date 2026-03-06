@@ -4,62 +4,62 @@ const score = document.getElementById("score");
 
 let gameOver = false;
 
-// Score initialisieren
-score.innerText = 0;
+let obstacleX = 600;
+let speed = 20; // Hindernis schnell
+let currentScore = 0;
 
-// Sprungfunktion
-function jump() {
-  ship.classList.add("jump-animation");
+let jumping = false;
+let jumpProgress = 0;
 
-  setTimeout(() => {
-    ship.classList.remove("jump-animation");
-  }, 800);
-}
-
-// Taste drücken = springen
-document.addEventListener("keypress", () => {
-  if (!ship.classList.contains("jump-animation") && !gameOver) {
-    jump();
+// SPRUNG START
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space" && !jumping && !gameOver) {
+    jumping = true;
+    jumpProgress = 0;
   }
 });
 
-// Game Loop
-setInterval(() => {
+function gameLoop() {
   if (gameOver) return;
 
-  // Score erhöhen
-  const currentScore = parseInt(score.innerText, 10) || 0;
-  score.innerText = currentScore + 2;
+  // Hindernis bewegen über LEFT
+  obstacleX -= speed;
+  if (obstacleX < -60) obstacleX = 600;
+  obstacle.style.left = obstacleX + "px";
 
-  // Hindernis Position prüfen
-  const obstacleLeft = parseInt(
-    window.getComputedStyle(obstacle).getPropertyValue("left"),
-    10,
-  );
-
-  if (isNaN(obstacleLeft) || obstacleLeft < 0) {
-    obstacle.style.display = "none";
-  } else {
-    obstacle.style.display = "block";
+  // Sprung Physik + Rotation
+  if (jumping) {
+    jumpProgress += 0.15; // schneller Sprung
+    const height = Math.sin(jumpProgress * Math.PI) * 250; // <-- Sprunghöhe erhöht
+    const rotation = jumpProgress * 360;
+    ship.style.transform = `translateY(-${height}px) rotate(${rotation}deg)`;
+    if (jumpProgress >= 1) {
+      jumping = false;
+      ship.style.transform = "translateY(0) rotate(0deg)";
+    }
   }
 
-  // Kollisionsprüfung
+  // Score
+  currentScore += 2;
+  score.innerText = currentScore;
+
+  // Kollision prüfen
   const shipRect = ship.getBoundingClientRect();
   const obsRect = obstacle.getBoundingClientRect();
 
-  const isColliding =
+  const collision =
     shipRect.left < obsRect.right &&
     shipRect.right > obsRect.left &&
     shipRect.top < obsRect.bottom &&
     shipRect.bottom > obsRect.top;
 
-  if (isColliding && !gameOver) {
+  if (collision) {
     gameOver = true;
-
-    // Hindernis stoppen
-    obstacle.style.animation = "none";
-
-    // Schiff fällt runter
-    ship.classList.add("fall-animation");
+    score.innerText += " 💥";
   }
-}, 50);
+
+  requestAnimationFrame(gameLoop);
+}
+
+// Game starten
+gameLoop();
