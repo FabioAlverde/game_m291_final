@@ -1,6 +1,50 @@
+#game-title {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  margin: 40px auto 10px;
+}
+
+#start-hint {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+  height: 1.5em;
+  margin: 0 auto 10px;
+}
+
 #score {
   text-align: center;
   font-family: Arial, sans-serif;
+}
+
+#game-over-screen {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin-top: 10px;
+  min-height: 70px;
+}
+
+#restart-btn {
+  display: none;
+  padding: 10px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 2px solid #333;
+  background: #fff;
+  border-radius: 6px;
+}
+
+#restart-btn:hover {
+  background: #333;
+  color: #fff;
+}
+
+#highscore {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #555;
 }
 
 #game {

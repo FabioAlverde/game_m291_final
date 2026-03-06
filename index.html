@@ -3,17 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dino Game Ultra Fast</title>
+    <title>Verkehrshaus Schiffli</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
+    <h2 id="game-title">Verkehrshaus Schiffli</h2>
+    <p id="start-hint">Drücke <strong>Leertaste</strong> um zu starten</p>
+
     <div id="game">
       <div id="ship"></div>
       <div id="obstacle"></div>
     </div>
 
     <h1 id="score">0</h1>
+    <div id="game-over-screen">
+      <button id="restart-btn">Erneut spielen</button>
+      <p id="highscore">Highscore: 0</p>
+    </div>
 
     <script src="script.js"></script>
   </body>
