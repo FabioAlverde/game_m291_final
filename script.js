@@ -5,7 +5,7 @@ const score = document.getElementById("score");
 let gameOver = false;
 
 let obstacleX = 600;
-let speed = 20; // Hindernis schnell
+let speed = 10; // Geschwindigkeit reduziert
 let currentScore = 0;
 
 let jumping = false;
@@ -29,8 +29,8 @@ function gameLoop() {
 
   // Sprung Physik + Rotation
   if (jumping) {
-    jumpProgress += 0.15; // schneller Sprung
-    const height = Math.sin(jumpProgress * Math.PI) * 250; // <-- Sprunghöhe erhöht
+    jumpProgress += 0.15;
+    const height = Math.sin(jumpProgress * Math.PI) * 250; // hohe Sprungweite
     const rotation = jumpProgress * 360;
     ship.style.transform = `translateY(-${height}px) rotate(${rotation}deg)`;
     if (jumpProgress >= 1) {
