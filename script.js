@@ -5,13 +5,13 @@ const score = document.getElementById("score");
 let gameOver = false;
 
 let obstacleX = 600;
-let speed = 10; // Geschwindigkeit reduziert
+let speed = 5; // deutlich langsamer, genügend Zeit zum Sprung
 let currentScore = 0;
 
 let jumping = false;
 let jumpProgress = 0;
 
-// SPRUNG START
+// SPRUNG START bei Leertaste
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space" && !jumping && !gameOver) {
     jumping = true;
